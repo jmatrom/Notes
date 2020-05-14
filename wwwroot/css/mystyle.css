@@ -1,0 +1,15 @@
+﻿
+.div_notes {
+    float: left;
+    margin: 5px;
+    padding: 5px;
+    width: 20%;
+    height: 250px;
+}
+.icon_class {
+    padding: 1px;
+}
+
+.icon_class::before{
+    color:black;
+}

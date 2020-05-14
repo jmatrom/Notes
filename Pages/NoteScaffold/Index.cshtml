@@ -1,0 +1,87 @@
+﻿@page "/notes"
+@model Notes.Pages.NoteScaffold.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        <select asp-for="ColorSelected" asp-items="Model.ColorList">
+            <option value="">All</option>
+        </select>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note[0].CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note[0].TextNote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note[0].Color)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Note)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TextNote)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Color)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+<div class="container" style="border-collapse: collapse;display:table;">
+    @foreach (var item in Model.Note)
+    {
+        <div class="col-md-3 col-sm-4 col-xs-6 div_notes" style="background-color:#@Html.DisplayFor(modelItem => item.Color);">
+            <div style="padding:5px;font-weight: bold;height:10%;">@Html.DisplayFor(modelItem => item.Title)</div>
+            <div style="padding:5px;height:80%;">@Html.DisplayFor(modelItem => item.TextNote)</div>
+            <div>
+
+                <a asp-page="./Edit" asp-route-id="@item.ID">
+                    <i class="far fa-edit icon_class"></i>
+                </a>
+                <a asp-page="./Details" asp-route-id="@item.ID">
+                    <i class="fas fa-info icon_class"></i>
+                </a>
+                <a asp-page="./Delete" asp-route-id="@item.ID">
+                    <i class="fas fa-trash icon_class"></i>
+                </a>
+            </div>
+        </div>
+    }
+</div>
